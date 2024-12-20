@@ -1,0 +1,208 @@
+#include <iostream>
+#include <conio.h>
+#include <windows.h>
+using namespace std;
+bool gameOver;
+const int width = 117;
+const int height = 26;
+int x, y, fruitX, fruitY, score;
+int tailX[100], tailY[100];
+int nTail;
+enum eDirecton { STOP = 0, LEFT, RIGHT, UP, DOWN };
+eDirecton dir;
+void Setup()
+{
+    gameOver = false;
+    dir = STOP;
+    x = width / 2;
+    y = height / 2;
+    fruitX = rand() % width;
+    fruitY = rand() % height;
+    score = 0;
+}
+void Draw() //hrací plocha
+{
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0,0 });
+    for (int i = 0; i < width + 2; i++)
+        cout << "#";
+    cout << endl;
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (j == 0)
+                cout << "#";
+            if (i == y && j == x)
+                cout << "O";
+            else if (i == fruitY && j == fruitX)
+                cout << "F";
+            else
+            {
+                bool print = false;
+                for (int k = 0; k < nTail; k++)
+                {
+                    if (tailX[k] == j && tailY[k] == i)
+                    {
+                        cout << "o";
+                        print = true;
+                    }
+                }
+                if (!print)
+                    cout << " ";
+            }
+
+
+            if (j == width - 1)
+                cout << "#";
+        }
+        cout << endl;
+    }
+
+    for (int i = 0; i < width + 2; i++)
+        cout << "#";
+    cout << endl;
+    cout << "Score:" << score << endl;
+}
+void Input() //ovládání hada
+{
+    if (_kbhit())
+    {
+        int key = _getch();
+        if (key == 224) 
+        {
+            key = _getch();
+            switch (key)
+            {
+            case 75: 
+                if (dir != RIGHT)
+                    dir = LEFT;
+                break;
+            case 77: 
+                if (dir != LEFT)
+                    dir = RIGHT;
+                break;
+            case 72: 
+                if (dir != DOWN)
+                    dir = UP;
+                break;
+            case 80: 
+                if (dir != UP)
+                    dir = DOWN;
+                break;
+            }
+        }
+        else
+        {
+            switch (key)
+            {
+            case 'a': 
+            case 'A':
+                if (dir != RIGHT)
+                    dir = LEFT;
+                break;
+            case 'd':
+            case 'D':
+                if (dir != LEFT)
+                    dir = RIGHT;
+                break;
+            case 'w': 
+            case 'W':
+                if (dir != DOWN)
+                    dir = UP;
+                break;
+            case 's': 
+            case 'S':
+                if (dir != UP)
+                    dir = DOWN;
+                break;
+            case 'x': 
+            case 'X':
+                gameOver = true;
+                break;
+            }
+        }
+    }
+}
+
+void Logic() //pohyb a kolize hada a ocasu + generovani ovoce pro hada
+{
+    int prevX = tailX[0];
+    int prevY = tailY[0];
+    int prev2X, prev2Y;
+    tailX[0] = x;
+    tailY[0] = y;
+    for (int i = 1; i < nTail; i++)
+    {
+        prev2X = tailX[i];
+        prev2Y = tailY[i];
+        tailX[i] = prevX;
+        tailY[i] = prevY;
+        prevX = prev2X;
+        prevY = prev2Y;
+    }
+    switch (dir)
+    {
+    case LEFT:
+        x--;
+        break;
+    case RIGHT:
+        x++;
+        break;
+    case UP:
+        y--;
+        break;
+    case DOWN:
+        y++;
+        break;
+    default:
+        break;
+    }
+    if (x >= width) x = 0; else if (x < 0) x = width - 1;
+    if (y >= height) y = 0; else if (y < 0) y = height - 1;
+
+    for (int i = 0; i < nTail; i++)
+        if (tailX[i] == x && tailY[i] == y)
+            gameOver = true;
+
+    if (x == fruitX && y == fruitY)
+    {
+        score += 10;
+        fruitX = rand() % width;
+        fruitY = rand() % height;
+        nTail++;
+    }
+}
+int main()
+{
+    Setup();
+    while (!gameOver)
+    {
+        Draw();
+        Input();
+        Logic();
+        if (score >= 2500)
+        {
+            system("cls");
+            cout << " Y   Y  OOO   U   U      W     W  OOO   N   N   !!" << endl;
+            cout << "  Y Y  O   O  U   U      W  W  W O   O  NN  N   !!" << endl;
+            cout << "   Y   O   O  U   U      W  W  W O   O  N N N   !!" << endl;
+            cout << "   Y   O   O  U   U      W  W  W O   O  N  NN     " << endl;
+            cout << "   Y    OOO    UUU        W   W   OOO   N   N   !!" << endl;
+            return 0;
+
+        }
+        if (gameOver == true) {
+            system("cls");
+            cout << " GGGGG   AAAAA  M     M  EEEEE      OOO   V   V  EEEEE  RRRRR    !!" << endl;
+            cout << "G     G  A   A  MM   MM  E         O   O  V   V  E      R    R   !!" << endl;
+            cout << "G        AAAAA  M M M M  EEEE      O   O  V   V  EEEE   RRRRR    !!" << endl;
+            cout << "G  GGGG  A   A  M  M  M  E         O   O  V   V  E      R   R      " << endl;
+            cout << " GGGGG   A   A  M     M  EEEEE      OOO    VVV   EEEEE  R    R   !!" << endl;
+            return 0;
+
+        }
+        Sleep(40);
+    }
+    return 0;
+}
