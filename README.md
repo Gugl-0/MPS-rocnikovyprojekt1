@@ -2,9 +2,9 @@
 
 Jako ročníkovy projekt v 1. pololetí jsem si vybral naprohramování hry "snake" v C++.
 Dělal jsem to podle tutoriálu na youtube který je rozdělen na 3 části: 
-      https://www.youtube.com/watch?v=E_-lMZDi7Uw&t=22s
-      https://www.youtube.com/watch?v=W1e5wO7XR2w&t=46s
-      https://www.youtube.com/watch?v=PSoLD9mVXTA&t=92s
+      1. https://www.youtube.com/watch?v=E_-lMZDi7Uw&t=22s
+      2. https://www.youtube.com/watch?v=W1e5wO7XR2w&t=46s
+      3. https://www.youtube.com/watch?v=PSoLD9mVXTA&t=92s
 
 -Na kódu jsem upravil pár věcí:
       Zvětšil jsem herní pole z 20x20 na 117x26.
