@@ -48,6 +48,19 @@ Dělal jsem to podle tutoriálu na youtube který je rozdělen na 3 části:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
       
       
       
