@@ -39,8 +39,24 @@ Dělal jsem to podle tutoriálu na youtube který je rozdělen na 3 části:
 -Na dolní části obrazovce (pod hracím polem) se zobrazuje skóre
 
 
+# Videa
 
 
+### Gameplay
+
+https://youtu.be/gISAshAv3rI
+
+### Victory
+
+https://youtu.be/53BpsscEmys
+
+Pokud se dosáhne urečného počtu bodů, hra skončí a vypíše se nápis: YOU WON!
+
+### GameOver
+
+https://youtu.be/JwK99AfpH9s
+
+Pokud had narazí do svého ocasu nebo se zamckne klavesa "x" hra se uknčí a vypíše se nápis: GAME OVER!
 
 
 
