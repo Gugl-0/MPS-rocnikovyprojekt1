@@ -38,6 +38,7 @@ Dělal jsem to podle tutoriálu na youtube který je rozdělen na 3 části:
 -Vykresluje hrací pole, zobrazuje hada (O), jeho ocas (o), ovoce (F) a hranici (#)
 -Na dolní části obrazovce (pod hracím polem) se zobrazuje skóre
 
+### 
 
 # Videa
 
