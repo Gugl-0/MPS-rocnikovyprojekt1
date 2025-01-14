@@ -38,7 +38,18 @@ Dělal jsem to podle tutoriálu na youtube který je rozdělen na 3 části:
 -Vykresluje hrací pole, zobrazuje hada (O), jeho ocas (o), ovoce (F) a hranici (#)
 -Na dolní části obrazovce (pod hracím polem) se zobrazuje skóre
 
-### 
+### Input()
+
+-Ovládání
+-Had se dá ovládat pomocí wasd a šipek.
+-Zmáčknutí klávesy "x" se ukončí hra.
+
+### Logic()
+-Obsahuje logiku pohybu hada, prodlužování ocasu když sní ha ovoce, kontorluje zda had netrefil svůj ocas a náhodnou generaci ovoce.
+-Taky kontroluje zda had opustil hrací pole, pokud ano objeví se na opačné straně.
+
+### Main()
+-Hlavní herní smyčka
 
 # Videa
 
